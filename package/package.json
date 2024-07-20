@@ -31,7 +31,6 @@
   "type": "module",
   "dependencies": {
     "astro-integration-kit": "catalog:kit",
-    "kleur": "catalog:kit",
     "package-json": "catalog:kit",
     "semver": "catalog:kit"
   },

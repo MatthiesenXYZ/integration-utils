@@ -15,7 +15,7 @@ export type LoggerOpts = {
  * @param opts.verbose - Whether to log all messages or just those that are not debug or info
  * @param message - Message to log
  */
-export const integrationLogger = async ( opts: LoggerOpts, message: string ) => {
+export const integrationLogger = async ( opts: LoggerOpts, message: string ): Promise<void> => {
     const { logLevel, logger, verbose } = opts;
     
     switch ( verbose ) {

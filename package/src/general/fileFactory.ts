@@ -11,10 +11,10 @@ export const fileFactory = () => {
 	let file = '';
 
 	return {
-		addLines(lines: string) {
+		addLines(lines: string): void {
 			file += lines;
 		},
-		text() {
+		text(): string {
 			return file;
 		},
 	};

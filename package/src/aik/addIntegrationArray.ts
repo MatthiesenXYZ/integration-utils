@@ -12,7 +12,7 @@ import { addIntegration, defineUtility, hasIntegration } from "astro-integration
  * import Vue from "@astrojs/vue";
  * import tailwindcss from "@astrojs/tailwind";
  *
- * addIntegration(params, [
+ * addIntegrationArray(params, [
  *  { integration: Vue(), ensureUnique: true }
  *  { integration: tailwindcss() }
  * ])
@@ -27,7 +27,7 @@ export const addIntegrationArray = defineUtility('astro:config:setup')(
             integration: AstroIntegration;
             ensureUnique?: boolean | undefined;
         }>
-    ) => {
+    ): void => {
         const { logger } = params;
 
         for ( const { integration, ensureUnique } of integrations ) {

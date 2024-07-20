@@ -17,7 +17,7 @@ const env = loadEnv("all", process.cwd(), "");
  * @param opts.logger - Astro logger
  * @param opts.verbose - Whether to log all environment variables or just missing ones
  */
-export const checkEnvVariables = async ( opts: CheckEnvOpts ) => {
+export const checkEnvVariables = async ( opts: CheckEnvOpts ): Promise<void> => {
     const { logger, toCheck, verbose } = opts;
 
     for ( const variable of toCheck ) {

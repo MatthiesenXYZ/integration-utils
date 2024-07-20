@@ -5,7 +5,7 @@
  * @param configName - The name of the configuration file.
  * @returns An array of URLs representing different configuration file paths to try.
  */
-export function getConfigFileURL(projectRootUrl: URL | string, configName: string) {
+export function getConfigFileURL(projectRootUrl: URL | string, configName: string): URL[] {
     const configPaths = Object.freeze([
         `${configName}.config.mjs`,
         `${configName}.config.js`,
@@ -34,7 +34,7 @@ export function getConfigFileURL(projectRootUrl: URL | string, configName: strin
  * @returns The loaded configuration object.
  * @throws An error if the configuration file cannot be loaded.
  */
-export async function loadConfigFile<ConfigObjectType>(configName: string, projectRoot: URL | string) {
+export async function loadConfigFile<ConfigObjectType>(configName: string, projectRoot: URL | string): Promise<ConfigObjectType> {
     const configPaths = Object.freeze([
         `${configName}.config.mjs`,
         `${configName}.config.js`,
@@ -96,5 +96,5 @@ export async function loadConfigFile<ConfigObjectType>(configName: string, proje
             );
         }
     }
-    return {};
+    return {} as ConfigObjectType;
 };

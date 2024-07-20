@@ -26,7 +26,7 @@ export const npmUpdateCheck = defineUtility('astro:config:setup')(
 			name: string;
 			currentVersion: string;
 		}
-	) => {
+	): Promise<void> => {
 		if (params.command === 'dev') {
 			const logger = params.logger.fork(`${opts.name} (UPDATE CHECK)`);
 

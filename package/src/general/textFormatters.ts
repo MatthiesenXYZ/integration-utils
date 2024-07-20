@@ -3,7 +3,7 @@
  * @param str - The string to convert.
  * @returns The camel case version of the input string.
  */
-export function toCamelCase (str: string) {
+export function toCamelCase (str: string): string {
     return str
         .split(/[-_]/)
         .map((word, index) => {
@@ -23,7 +23,7 @@ export function toCamelCase (str: string) {
  * @param str - The input string to be converted.
  * @returns The converted string in PascalCase.
  */
-export function toPascalCase (str: string) {
+export function toPascalCase (str: string): string {
   if (/^[a-z\d]+$/i.test(str)) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }

@@ -1,0 +1,8 @@
+biome = "1.8.3"
+moon = "1.27.2"
+node = "20.12.2"
+pnpm = "9.5.0"
+
+[plugins]
+biome = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/biome/plugin.toml"
+moon = "source:https://raw.githubusercontent.com/moonrepo/moon/master/proto-plugin.toml"

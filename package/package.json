@@ -1,0 +1,47 @@
+{
+  "name": "@matthiesenxyz/integration-utils",
+  "version": "0.1.0",
+  "description": "A collection of useful Astro Integration Utils",
+  "author": {
+    "name": "Adam Matthiesen",
+    "url": "https://matthiesen.xyz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthiesenxyz/integration-utils.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "astro",
+    "withastro"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./aikUtils": "./src/aik/index.ts",
+    "./astroUtils": "./src/astro/index.ts",
+    "./generalUtils": "./src/general/index.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "astro-integration-kit": "catalog:kit",
+    "kleur": "catalog:kit",
+    "package-json": "catalog:kit",
+    "semver": "catalog:kit"
+  },
+  "peerDependencies": {
+    "astro": "catalog:min"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:dev",
+    "@types/semver": "catalog:dev",
+    "typescript": "catalog:dev",
+    "vite": "catalog:dev"
+  }
+}

@@ -24,9 +24,9 @@
   ],
   "exports": {
     ".": "./src/index.ts",
-    "./aikUtils": "./src/aik/index.ts",
-    "./astroUtils": "./src/astro/index.ts",
-    "./generalUtils": "./src/general/index.ts"
+    "./aik-utils": "./src/aik/index.ts",
+    "./astro-utils": "./src/astro/index.ts",
+    "./general-utils": "./src/general/index.ts"
   },
   "type": "module",
   "dependencies": {

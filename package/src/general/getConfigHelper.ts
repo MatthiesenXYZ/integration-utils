@@ -1,54 +1,84 @@
 
+/**
+ * Returns an array of URLs for different configuration file paths to try.
+ * @param projectRootUrl - The root URL of the project.
+ * @param configName - The name of the configuration file.
+ * @returns An array of URLs representing different configuration file paths to try.
+ */
 export function getConfigFileURL(projectRootUrl: URL | string, configName: string) {
     const configPaths = Object.freeze([
         `${configName}.config.mjs`,
         `${configName}.config.js`,
         `${configName}.config.mts`,
         `${configName}.config.ts`,
-    ])
+    ]);
 
-    function resolveConfigPath( configPath: string ) {
-        return new URL( `${configPath}`, projectRootUrl );
+    /**
+     * Resolves the given config path relative to the project root URL.
+     * @param configPath - The configuration file path to resolve.
+     * @returns The resolved URL of the configuration file.
+     */
+    function resolveConfigPath(configPath: string) {
+        return new URL(`${configPath}`, projectRootUrl);
     }
 
-    const pathsToTry = configPaths.map( (configPath) => resolveConfigPath(configPath));
+    const pathsToTry = configPaths.map((configPath) => resolveConfigPath(configPath));
 
     return pathsToTry;
-}
+};
 
-export async function loadConfigFile <ConfigObjectType> ( configName: string, projectRoot: URL | string) {
+/**
+ * Loads a configuration file of type `ConfigObjectType` based on the provided `configName` and `projectRoot`.
+ * @param configName - The name of the configuration file.
+ * @param projectRoot - The root URL or path of the project.
+ * @returns The loaded configuration object.
+ * @throws An error if the configuration file cannot be loaded.
+ */
+export async function loadConfigFile<ConfigObjectType>(configName: string, projectRoot: URL | string) {
     const configPaths = Object.freeze([
         `${configName}.config.mjs`,
         `${configName}.config.js`,
         `${configName}.config.mts`,
         `${configName}.config.ts`,
-    ])
-    
-    function resolveConfigPath( configPath: string ) {
-        return new URL( `${configPath}?t=${Date.now()}`, projectRoot ).href;
+    ]);
+
+    /**
+     * Resolves the full URL of a configuration file based on the provided `configPath` and `projectRoot`.
+     * @param configPath - The path of the configuration file.
+     * @returns The resolved URL of the configuration file.
+     */
+    function resolveConfigPath(configPath: string) {
+        return new URL(`${configPath}?t=${Date.now()}`, projectRoot).href;
     }
 
-    const pathsToTry = configPaths.map( (configPath) => resolveConfigPath(configPath));
+    const pathsToTry = configPaths.map((configPath) => resolveConfigPath(configPath));
 
     if (import.meta.env?.BASE_URL?.length) {
-        pathsToTry.push( `${configName}.config.mjs?t=${Date.now()}` );
-        pathsToTry.push( `${configName}.config.js?t=${Date.now()}` );
-        pathsToTry.push( `${configName}.config.mts?t=${Date.now()}` );
-        pathsToTry.push( `${configName}.config.ts?t=${Date.now()}` );
+        pathsToTry.push(`${configName}.config.mjs?t=${Date.now()}`);
+        pathsToTry.push(`${configName}.config.js?t=${Date.now()}`);
+        pathsToTry.push(`${configName}.config.mts?t=${Date.now()}`);
+        pathsToTry.push(`${configName}.config.ts?t=${Date.now()}`);
     }
 
+    /**
+     * Coerces an error object into a standardized format.
+     * @param error - The error object to coerce.
+     * @returns The coerced error object.
+     */
     function coerceError(error: unknown): { message: string; code?: string | undefined } {
-		if (typeof error === 'object' && error !== null && 'message' in error) {
-			return error as { message: string; code?: string | undefined }
-		}
-		return { message: error as string }
-	}
+        if (typeof error === 'object' && error !== null && 'message' in error) {
+            return error as { message: string; code?: string | undefined };
+        }
+        return { message: error as string };
+    }
 
     for (const path of pathsToTry) {
         try {
             const module = (await import(/* @vite-ignore */ path)) as { default: ConfigObjectType };
             if (!module.default) {
-                throw new Error(`Missing or invalid default export in ${path}. Please ensure the file exports a default object.`);
+                throw new Error(
+                    `Missing or invalid default export in ${path}. Please ensure the file exports a default object.`
+                );
             }
             return module.default;
         } catch (error) {
@@ -58,10 +88,13 @@ export async function loadConfigFile <ConfigObjectType> ( configName: string, pr
                 if (message.replace(/(imported )?from .*$/, '').includes(path)) continue;
             }
 
-            throw new Error(`Your project includes a ${configName}.config file that could not be loaded due to ${code ? `the error ${code}` : 'the following error'}: ${message}`.replace(/\s+/g, ' '),
-				error instanceof Error ? { cause: error } : undefined
-			);
+            throw new Error(
+                `Your project includes a ${configName}.config file that could not be loaded due to ${
+                    code ? `the error ${code}` : 'the following error'
+                }: ${message}`.replace(/\s+/g, ' '),
+                error instanceof Error ? { cause: error } : undefined
+            );
         }
     }
     return {};
-}
+};

@@ -3,19 +3,21 @@ import * as semver from 'semver';
 import packageJson from 'package-json';
 
 /**
- * Fetch the latest version of a package from the npm registry
- * @param name - The name of the package to fetch the latest version for
- * @returns The latest version of the package
+ * Fetches the latest version of a package from the npm registry.
+ * @param packageName - The name of the package.
+ * @returns A promise that resolves to the latest version of the package.
  */
 async function fetchlatestVersion(packageName:string): Promise<string> {
 	const {version} = await packageJson(packageName.toLowerCase());
 	return version;
-}
+};
 
 /**
- * Check for updates to the package ( AIK Utility )
- * @param params - The Astro parameters
- * @param opts - The options
+ * Checks for updates of a specified package on npm registry.
+ * @param {import("astro").HookParameters<"astro:config:setup">} params - The Astro parameters object.
+ * @param opts - The options object.
+ * @param opts.name - The name of the package.
+ * @param opts.currentVersion - The current version of the package.
  */
 export const npmUpdateCheck = defineUtility('astro:config:setup')(
 	async (

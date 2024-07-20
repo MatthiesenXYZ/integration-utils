@@ -1,3 +1,8 @@
+/**
+ * Converts a string to camel case.
+ * @param str - The string to convert.
+ * @returns The camel case version of the input string.
+ */
 export function toCamelCase (str: string) {
     return str
         .split(/[-_]/)
@@ -11,8 +16,13 @@ export function toCamelCase (str: string) {
             );
         })
         .join("");
-}
+};
 
+/**
+ * Converts a string to PascalCase.
+ * @param str - The input string to be converted.
+ * @returns The converted string in PascalCase.
+ */
 export function toPascalCase (str: string) {
   if (/^[a-z\d]+$/i.test(str)) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -21,4 +31,4 @@ export function toPascalCase (str: string) {
     /([a-z\d])([a-z\d]*)/gi,
     (g1, g2) => g1.toUpperCase() + g2.toLowerCase()
   ).replace(/[^a-z\d]/gi, '');
-}
+};

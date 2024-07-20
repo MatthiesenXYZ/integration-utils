@@ -5,10 +5,18 @@ export type CheckEnvOpts = {
     toCheck: string[];
     logger: AstroIntegrationLogger;
     verbose?: boolean;
-}
+};
 
 const env = loadEnv("all", process.cwd(), "");
 
+/**
+ * Check environment variables
+ * 
+ * @param opts - Options for checking environment variables
+ * @param opts.toCheck - Array of environment variables to check
+ * @param opts.logger - Astro logger
+ * @param opts.verbose - Whether to log all environment variables or just missing ones
+ */
 export const checkEnvVariables = async ( opts: CheckEnvOpts ) => {
     const { logger, toCheck, verbose } = opts;
 
@@ -28,4 +36,4 @@ export const checkEnvVariables = async ( opts: CheckEnvOpts ) => {
                 break;
         }
     }
-}
+};

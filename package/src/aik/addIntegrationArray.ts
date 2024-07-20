@@ -38,5 +38,4 @@ export const addIntegrationArray = defineUtility('astro:config:setup')(
 
             addIntegration(params, { integration });
         }
-    }
-)
+});

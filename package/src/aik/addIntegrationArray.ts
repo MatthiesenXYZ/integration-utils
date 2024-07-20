@@ -1,5 +1,5 @@
 import type { AstroIntegration } from "astro";
-import { addIntegration, defineUtility, hasIntegration } from "astro-integration-kit";
+import { addIntegration, defineUtility } from "astro-integration-kit";
 
 /**
  * Easily add a list of integrations from within an integration.
@@ -28,14 +28,7 @@ export const addIntegrationArray = defineUtility('astro:config:setup')(
             ensureUnique?: boolean | undefined;
         }>
     ): void => {
-        const { logger } = params;
-
         for ( const { integration, ensureUnique } of integrations ) {
-            if ( ensureUnique && hasIntegration(params, { name: integration.name })) {
-                logger.warn(`Integration ${integration.name} already exists and ensureUnique is set to true. Skipping.`);
-                return;
-            }
-
-            addIntegration(params, { integration });
-        }
+            addIntegration(params, { integration, ensureUnique });
+        };
 });

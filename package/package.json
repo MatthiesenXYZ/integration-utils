@@ -1,6 +1,6 @@
 {
   "name": "@matthiesenxyz/integration-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A collection of useful Astro Integration Utils",
   "author": {
     "name": "Adam Matthiesen",
@@ -11,12 +11,17 @@
     "url": "git+https://github.com/matthiesenxyz/integration-utils.git"
   },
   "license": "MIT",
-  "keywords": ["astro", "withastro"],
+  "keywords": [
+    "astro",
+    "withastro"
+  ],
   "publishConfig": {
     "access": "public"
   },
   "sideEffects": false,
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "exports": {
     ".": "./src/index.ts",
     "./aik-utils": "./src/aik/index.ts",

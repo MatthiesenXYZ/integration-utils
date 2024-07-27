@@ -1,9 +1,9 @@
 catalogs:
   min:
-    astro: ^4.11.6
+    astro: ^4.12
     vite: ^4 || ^5
   kit:
-    astro-integration-kit: ^0.14.0
+    astro-integration-kit: ^0.16.0
     package-json: ^10.0.1
     semver: ^7.6.3
   dev:
@@ -12,7 +12,7 @@ catalogs:
     typescript: ^5.5.3
     vite: ^5.3.4
   shared:
-    astro: ^4.11.6
+    astro: ^4.12.2
 
 packages:
   - "package"

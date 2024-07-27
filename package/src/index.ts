@@ -1,5 +1,12 @@
-export * as generalUtils from './general';
+export { fileFactory, reservedNames, toCamelCase, toPascalCase } from './general';
 
-export * as aikUtils from './aik';
+export { addIntegrationArray, npmUpdateCheck } from './aik';
 
-export * as astroUtils from './astro';
+export {
+	type CheckEnvOpts,
+	type LoggerOpts,
+	checkEnvVariables,
+	integrationLogger,
+	namespaceBuiltinsPlugin,
+	nodeNamespaceBuiltinsAstro,
+} from './astro';

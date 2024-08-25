@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "astro": "catalog:shared",
+    "@astrojs/node": "^8.3.3",
     "@matthiesenxyz/integration-utils": "workspace:*"
   }
 }

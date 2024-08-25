@@ -11,22 +11,19 @@
     "url": "git+https://github.com/matthiesenxyz/integration-utils.git"
   },
   "license": "MIT",
-  "keywords": [
-    "astro",
-    "withastro"
-  ],
+  "keywords": ["astro", "withastro"],
   "publishConfig": {
     "access": "public"
   },
   "sideEffects": false,
-  "files": [
-    "src"
-  ],
+  "files": ["src"],
   "exports": {
-    ".": "./src/index.ts",
-    "./aik-utils": "./src/aik/index.ts",
-    "./astro-utils": "./src/astro/index.ts",
-    "./general-utils": "./src/general/index.ts"
+    "./textFormatters": "./src/textFormatters.ts",
+    "./fileFactory": "./src/fileFactory.ts",
+    "./securityUtils": "./src/securityUtils/index.ts",
+    "./getConfigHelpers": "./src/getConfigHelpers/index.ts",
+    "./astroUtils": "./src/astroUtils/index.ts",
+    "./aikUtils": "./src/aikUtils/index.ts"
   },
   "type": "module",
   "dependencies": {

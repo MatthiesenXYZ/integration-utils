@@ -1,6 +1,6 @@
 /**
  * Factory function to create a file
- * 
+ *
  * @example
  * const file = fileFactory();
  * file.addLines('line1');
@@ -19,3 +19,5 @@ export const fileFactory = () => {
 		},
 	};
 };
+
+export default fileFactory;

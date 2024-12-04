@@ -1,5 +1,5 @@
-import type { AstroIntegration } from "astro";
-import { addIntegration, defineUtility } from "astro-integration-kit";
+import type { AstroIntegration } from 'astro';
+import { addIntegration, defineUtility } from 'astro-integration-kit';
 
 /**
  * Easily add a list of integrations from within an integration.
@@ -21,14 +21,15 @@ import { addIntegration, defineUtility } from "astro-integration-kit";
  * @see https://astro-integration-kit.netlify.app/utilities/add-integration/
  */
 export const addIntegrationArray = defineUtility('astro:config:setup')(
-    (
-        params, 
-        integrations: Array<{
-            integration: AstroIntegration;
-            ensureUnique?: boolean | undefined;
-        }>
-    ): void => {
-        for ( const { integration, ensureUnique } of integrations ) {
-            addIntegration(params, { integration, ensureUnique });
-        };
-});
+	(
+		params,
+		integrations: Array<{
+			integration: AstroIntegration;
+			ensureUnique?: boolean | undefined;
+		}>
+	): void => {
+		for (const { integration, ensureUnique } of integrations) {
+			addIntegration(params, { integration, ensureUnique });
+		}
+	}
+);
